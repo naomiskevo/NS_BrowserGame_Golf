@@ -1,7 +1,7 @@
 # Golf The Card Game
 
 ## Purpose/Game Overview
-The purpose of this card game is not unlike the actual game an actual game of golf. The player wants to finish each round with the least amount of points by trading and discarding the cards from the deck one by one.
+The purpose of this card game is not unlike an actual game of golf. The player wants to finish each round with the least amount of points. To achieve this goal, the playger goes through the deck a card at a time and decides if they want to replace one of their six cards with the new one they uncovered from the deck, or if they want to keep what they have and add the new card to the discard pile. The catch is, they have to do this without getting to check and make sure they are replacing the card they intend to. Each round ends when they player has filtered through the entire deck and has a final six cards. At the ends of five rounds the player has their total amount of points and can see how they stack up compared to the standard. Will they be able to compete with the big dogs, or need some extra practice? They'll have to play to find out!  
 
 ## Wireframe
 ![Wireframe image](/wireframe/wireframe.png)
