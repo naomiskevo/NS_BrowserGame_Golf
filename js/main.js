@@ -1,11 +1,6 @@
 /*----- constants -----*/
 //assign value to all the different cards
-const deck = [
-    1, 10, 0, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    1, 10, 0, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    1, 10, 0, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    1, 10, 0, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10
-];
+const arrayCards = [];
 
 
 
@@ -14,21 +9,26 @@ const deck = [
 
 
 /*----- app's state (variables) -----*/
+let cardD = [], cardH = [], cardC = [], cardS = [];
 
-let playerHand;
+let playerHand; 
+// usedCards; discardPile; 
+
 
 
 
 
 
 /*----- cached element references -----*/
-let messageEl = document.querySelector('h2');
-let startOverBtn = document.getElementById('start-over');
-let hintBtn = document.getElementById('hint');
-let replayBtn = document.getElementById('replay');
+const messageEl = document.querySelector('h2');
+const startOverBtn = document.getElementById('start-over');
+const hintBtn = document.getElementById('hint');
+const replayBtn = document.getElementById('replay');
 
 /*----- event listeners -----*/
-//Start over button starts game from Round 1
+replayBtn.addEventListener('click', init);
+startOverBtn.addEventListener('click', init);
+
 //click deck
 //click card button 
 
@@ -38,24 +38,64 @@ let replayBtn = document.getElementById('replay');
 
 
 
+
 /*----- functions -----*/
-function drawCard(deck) {
-    randomIndex = Math.floor(deck.length * Math.random());
-    return deck[randomIndex];
+createDeck();
+init();
+
+
+function createDeck () {
+    for(i = 0; i < 13; i++) {
+
+        cardD.url = `css/card-deck/images/diamonds/diamonds-${i}.svg`;
+        cardD.value = i;
+
+        cardH.url = `css/card-deck/images/hearts/hearts-${i}.svg`;
+        cardH.value = i;
+
+        cardC.url = `css/card-deck/images/clubs/clubs-${i}.svg`;
+        cardC.value = i;
+
+        cardS.url = `css/card-deck/images/spades/spades-${i}.svg`;
+        cardS.value = i;
+
+        arrayCards.push(cardD.value, cardH.value, cardC.value, cardS.value);
+
+
+    }
+}
+
+
+function drawCard(arrayCards) {
+    randomIndex = Math.floor(arrayCards.length * Math.random());
+    return arrayCards[randomIndex];
+
 };
+console.log(arrayCards[randomIndex]);
+
+
+function handValue(playerHand) {
+    var sum = 0;
+    for(var i = 0; i < playerHand.length; i++){
+        sum = sum + playerHand[i];
+    }
+    return sum;
+}
+
+
+
 
 function init() {
-    playerHand = [
-        drawCard(deck), drawCard(deck), drawCard(deck), 
-        drawCard(deck), drawCard(deck), drawCard(deck)];
+playerHand = [
+        drawCard(arrayCards), drawCard(arrayCards), drawCard(arrayCards), 
+        drawCard(arrayCards), drawCard(arrayCards), drawCard(arrayCards)
+    ];
   
 };
+console.log(playerHand);
+console.log(handValue(playerHand))
 
 
-
-init();
-console.log('player hand:' + playerHand);
-    // init will deal out 6 random cards from the deck
 //Allow player to click cards 1-3 only once to see content
 //Click deck to turn over a card
 //Replace the card on top of the discard pile with whatever card is clicked from the hand
