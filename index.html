@@ -10,18 +10,25 @@
     <title>Golf The Card Game</title>
 </head>
 <body>
-    <h1>Play Golf</h1>
-    
-    <button id="start-over">Start Over</button>
-    <button id="hint">Hint</button>
-
-    <div id="dealer-cards">
-
-    </div>
-    <div id="player-cards">
-
+    <h1 id="title">Play Golf</h1>
+    <div class="menu">
+        <button id="start-over">Start Over</button>
+        <button id="hint">Hint</button>
     </div>
 
+    <div class="deal cards">
+        <div class="card large" id="dealer-cards"></div>
+        <div class="card large" id="discard-pile"></div>                
+    </div>
+
+    <div class="user cards">
+        <div class="card large" id="player-card1"></div>
+        <div class="card large" id="player-card2"></div>
+        <div class="card large" id="player-card3"></div>
+        <div class="card large" id="player-card4"></div>
+        <div class="card large" id="player-card5"></div>
+        <div class="card large" id="player-card6"></div>
+    </div>
 
     <button id="replay">Replay</button>
     <h2>End Message</h2>
