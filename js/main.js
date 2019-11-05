@@ -21,13 +21,12 @@ let playerHand;
 
 /*----- cached element references -----*/
 const messageEl = document.querySelector('h2');
-const startOverBtn = document.getElementById('start-over');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
 
 /*----- event listeners -----*/
-replayBtn.addEventListener('click', init);
-startOverBtn.addEventListener('click', init);
+replayBtn.addEventListener('click', resetGame);
+
 
 //click deck
 //click card button 
@@ -43,6 +42,9 @@ startOverBtn.addEventListener('click', init);
 createDeck();
 init();
 
+function resetGame(evt) {
+    window.location.reload()
+}
 
 function createDeck () {
     for(i = 0; i < 13; i++) {
