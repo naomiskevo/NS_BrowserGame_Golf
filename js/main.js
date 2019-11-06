@@ -1,7 +1,7 @@
 /*----- constants -----*/
 //assign value to all the different cards
 
-var SUITS = ['s', 'c', 'd', 'h'];
+var SUITS = ['spades', 'clubs', 'diamonds', 'hearts'];
 var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
 
@@ -12,7 +12,7 @@ var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K'
 /*----- app's state (variables) -----*/
 let deck = [];
 let playerHand = [];
-let discardPile = [];
+let throwAway = [];
 let totalPoints = 0;
 let gameOver = false 
 
@@ -27,11 +27,9 @@ class Card {
         switch (this.rank) {
             case 'A':
                 return 1;
-                break;
             case 'J':
             case 'Q':
                 return 10;
-                break;
             case 'K':
                 return 0;
             default:
@@ -49,8 +47,10 @@ class Card {
 const messageEl = document.querySelector('h2');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
-const userCards = document.querySelectorAll('.player-container');
-const dealerCard = document.getElementById('dealer-card')
+const userCards = document.querySelector('.player-container');
+const dealerCard = document.getElementById('dealer-card');
+const discardPile = document.querySelector('.dealer-container');
+
 
 /*----- event listeners -----*/
 replayBtn.addEventListener('click', resetGame);
@@ -72,17 +72,26 @@ function resetGame(evt) {
 
 
 
-function randomCard(deck) {
-    random = Math.floor(Math.random() *51);
+function randomCard(card) {
+    random = Math.floor(Math.random() * 51);
     return deck[random];
 };
 
-createCardEl(card, className, container, cardArr) {
+function createCardEl(card, className, container, cardArr) {
     cardArr.push(card);
-
     
-}
+    let cardDiv = document.createElement('div');
+    cardDiv.className = className
+    cardDiv.innerHTML = `<img src="${cardImgSrc(card)}">`;
+    container.appendChild(cardDiv)
+    
+};
 
+function cardImgSrc(card) {
+    if (card.isFaceUp)
+        return `css/card-deck/images/${card.suit}/${card.suit}-${card.rank}.svg`;
+    return "images/backs/blue.svg";    
+}
 // function totalPoints(playerHand) {
 //     var sum = 0;
 //     for(var i = 0; i < playerHand.length; i++){
@@ -105,17 +114,22 @@ function init() {
     userCards.innerHTML = '';
 
     playerHand = [];
-    discardPile = [];
+    throwAway = [];
 
 
-    createCardEl(randomCard(), 'p-card', userCards[0], playerHand);
-    createCardEl(randomCard(), 'p-card', userCards[1], playerHand);
-    createCardEl(randomCard(), 'p-card', userCards[2], playerHand);
-    createCardEl(randomCard(), 'p-card', userCards[3], playerHand);
-    createCardEl(randomCard(), 'p-card', userCards[4], playerHand);
-    createCardEl(randomCard(), 'p-card', userCards[5], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+    createCardEl(randomCard(), 'p-card', userCards, playerHand);
+
+    createCardEl(randomCard(), 'd-card',discardPile, throwAway);
+    
+
+
 }
-console.log(deck);
+
 
                 
 init();
