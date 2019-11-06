@@ -1,7 +1,8 @@
 /*----- constants -----*/
 //assign value to all the different cards
-const arrayCards = [];
 
+var SUITS = ['s', 'c', 'd', 'h'];
+var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
 
 
@@ -9,10 +10,35 @@ const arrayCards = [];
 
 
 /*----- app's state (variables) -----*/
-let cardD = [], cardH = [], cardC = [], cardS = [];
+let deck = [];
+let playerHand = [];
+let discardPile = [];
+let totalPoints = 0;
+let gameOver = false 
 
-let playerHand; 
-// usedCards; discardPile; 
+/*------- classes for cards -----*/
+class Card {
+    constructor(suit, rank, isFaceUp = true) {
+        this.suit = suit;
+        this.rank = rank;
+        this.isFaceUp = isFaceUp;
+    }
+    value() {
+        switch (this.rank) {
+            case 'A':
+                return 1;
+                break;
+            case 'J':
+            case 'Q':
+                return 10;
+                break;
+            case 'K':
+                return 0;
+            default:
+                return Number(this.rank);
+        }
+    }
+}
 
 
 
@@ -23,15 +49,15 @@ let playerHand;
 const messageEl = document.querySelector('h2');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
+const userCards = document.querySelectorAll('.player-container');
+const dealerCard = document.getElementById('dealer-card')
 
 /*----- event listeners -----*/
 replayBtn.addEventListener('click', resetGame);
+// dealerCard.addEventListener('click', dealCard);
 
 
-//click deck
-//click card button 
-
-
+console.log(userCards);
 
 
 
@@ -39,65 +65,64 @@ replayBtn.addEventListener('click', resetGame);
 
 
 /*----- functions -----*/
-createDeck();
-init();
 
 function resetGame(evt) {
     window.location.reload()
 }
 
-function createDeck () {
-    for(i = 0; i < 13; i++) {
-
-        cardD.url = `css/card-deck/images/diamonds/diamonds-${i}.svg`;
-        cardD.value = i;
-
-        cardH.url = `css/card-deck/images/hearts/hearts-${i}.svg`;
-        cardH.value = i;
-
-        cardC.url = `css/card-deck/images/clubs/clubs-${i}.svg`;
-        cardC.value = i;
-
-        cardS.url = `css/card-deck/images/spades/spades-${i}.svg`;
-        cardS.value = i;
-
-        arrayCards.push(cardD.value, cardH.value, cardC.value, cardS.value);
 
 
-    }
-}
-
-
-function drawCard(arrayCards) {
-    randomIndex = Math.floor(arrayCards.length * Math.random());
-    return arrayCards[randomIndex];
-
+function randomCard(deck) {
+    random = Math.floor(Math.random() *51);
+    return deck[random];
 };
-console.log(arrayCards[randomIndex]);
 
+createCardEl(card, className, container, cardArr) {
+    cardArr.push(card);
 
-function handValue(playerHand) {
-    var sum = 0;
-    for(var i = 0; i < playerHand.length; i++){
-        sum = sum + playerHand[i];
-    }
-    return sum;
+    
 }
+
+// function totalPoints(playerHand) {
+//     var sum = 0;
+//     for(var i = 0; i < playerHand.length; i++){
+//         sum = sum + playerHand[i];
+//     }
+//     return sum;
+// }
 
 
 
 
 function init() {
-playerHand = [
-        drawCard(arrayCards), drawCard(arrayCards), drawCard(arrayCards), 
-        drawCard(arrayCards), drawCard(arrayCards), drawCard(arrayCards)
-    ];
-  
-};
-console.log(playerHand);
-console.log(handValue(playerHand))
+    for (suit of SUITS)
+        for (rank of RANKS)
+            deck.push(new Card(suit, rank));
 
 
+    gameOver = false;
+
+    userCards.innerHTML = '';
+
+    playerHand = [];
+    discardPile = [];
+
+
+    createCardEl(randomCard(), 'p-card', userCards[0], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards[1], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards[2], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards[3], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards[4], playerHand);
+    createCardEl(randomCard(), 'p-card', userCards[5], playerHand);
+}
+console.log(deck);
+
+                
+init();
+                
+                
+                
+                
 //Allow player to click cards 1-3 only once to see content
 //Click deck to turn over a card
 //Replace the card on top of the discard pile with whatever card is clicked from the hand
@@ -106,4 +131,11 @@ console.log(handValue(playerHand))
 //render message "Better Luck Next Time" if Total Score is > 40
 //render message "That'll Do" if Total Score is 40 - 25
 //render message "WOW, You're a pro" if Total Score is < 25
+
+
+
+
+
+
+
 

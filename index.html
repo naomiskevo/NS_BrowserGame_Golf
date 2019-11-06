@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/card-deck/cardstarter.css">
+    <script defer src="css/card-deck/card-js/card.js"></script>
     <script defer src="js/main.js"></script>
     <title>Golf The Card Game</title>
 </head>
@@ -14,13 +15,16 @@
     <div class="menu">
         <button id="hint">Hint</button>
     </div>
+    <section id="master-deck-container" class="card-container"></section>
 
-    <div class="deal cards">
-        <div class="card large" id="dealer-cards"></div>
-        <div class="card large" id="discard-pile"></div>                
+    <section id="shuffled-deck-container" class="card-container"></section>
+    
+    <div class="dealer-container">
+        <div class="card large" id="dealer-card"><img src="css/card-deck/images/backs/blue.svg"></div>
+        <div class="card large" id="discard-pile"><img src=""></div>                
     </div>
 
-    <div class="user cards">
+    <div class="player-container">
         <div class="card large" id="player-card1"></div>
         <div class="card large" id="player-card2"></div>
         <div class="card large" id="player-card3"></div>

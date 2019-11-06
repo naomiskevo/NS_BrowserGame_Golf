@@ -1,20 +1,23 @@
 html, * {
     box-sizing: border-box;
-  }
+}
   
-  html, body {
+html, body {
     height: 100%;
-  }
+}
 
-  #title {
+#title {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 
-  }
+}
 
+h2 {
+  text-align: center;
 
+}
   
-  button {
+button {
     font-family: Arial, Helvetica, sans-serif;  
     display: block;
     padding: 10px;
@@ -23,21 +26,21 @@ html, * {
     border: 1px solid grey;
     border-radius: 4px;
     outline: none;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: grey;
     color: white;
-  }
+}
   
- .deal.cards {
+.dealer-container {
      display: flex;
      flex-direction: row;
      justify-content: center;
- }
+}
 
- .user.cards {
+.player-container {
      display: flex;
      flex-direction: row;
      justify-content: center;
- }
+}
