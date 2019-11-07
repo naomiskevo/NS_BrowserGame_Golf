@@ -21,6 +21,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;  
     display: block;
     padding: 10px;
+    margin: 4%;
     font-size: 16px;
     color: grey;
     border: 1px solid grey;
@@ -36,11 +37,23 @@ button:hover {
 .dealer-container {
      display: flex;
      flex-direction: row;
-     justify-content: center;
+     justify-content: space-evenly;
+     justify-items: ;
 }
 
 .player-container {
      display: flex;
-     flex-direction: row;
-     justify-content: center;
+     
+     justify-content: space-between;
+}
+
+.p-card {
+  border: 2px solid darkgray;
+  margin : 0 6px 0 6px;
+
+}
+
+.d-card {
+  border: 2px solid darkgray;
+  margin-bottom: 3%;
 }

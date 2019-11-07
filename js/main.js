@@ -13,8 +13,8 @@ var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K'
 let deck = [];
 let playerHand = [];
 let throwAway = [];
-let totalPoints = 0;
-let gameOver = false 
+
+let gameOver = false
 
 /*------- classes for cards -----*/
 class Card {
@@ -48,8 +48,7 @@ const messageEl = document.querySelector('h2');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
 const userCards = document.querySelector('.player-container');
-const dealerCard = document.getElementById('dealer-card');
-const discardPile = document.querySelector('.dealer-container');
+const dealCards = document.querySelector('.dealer-container');
 
 
 /*----- event listeners -----*/
@@ -57,7 +56,7 @@ replayBtn.addEventListener('click', resetGame);
 // dealerCard.addEventListener('click', dealCard);
 
 
-console.log(userCards);
+
 
 
 
@@ -65,44 +64,6 @@ console.log(userCards);
 
 
 /*----- functions -----*/
-
-function resetGame(evt) {
-    window.location.reload()
-}
-
-
-
-function randomCard(card) {
-    random = Math.floor(Math.random() * 51);
-    return deck[random];
-};
-
-function createCardEl(card, className, container, cardArr) {
-    cardArr.push(card);
-    
-    let cardDiv = document.createElement('div');
-    cardDiv.className = className
-    cardDiv.innerHTML = `<img src="${cardImgSrc(card)}">`;
-    container.appendChild(cardDiv)
-    
-};
-
-function cardImgSrc(card) {
-    if (card.isFaceUp)
-        return `css/card-deck/images/${card.suit}/${card.suit}-${card.rank}.svg`;
-    return "images/backs/blue.svg";    
-}
-// function totalPoints(playerHand) {
-//     var sum = 0;
-//     for(var i = 0; i < playerHand.length; i++){
-//         sum = sum + playerHand[i];
-//     }
-//     return sum;
-// }
-
-
-
-
 function init() {
     for (suit of SUITS)
         for (rank of RANKS)
@@ -112,23 +73,76 @@ function init() {
     gameOver = false;
 
     userCards.innerHTML = '';
+    
 
     playerHand = [];
     throwAway = [];
+    dealerPile = [];
+
+ 
 
 
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
-    createCardEl(randomCard(), 'p-card', userCards, playerHand);
 
-    createCardEl(randomCard(), 'd-card',discardPile, throwAway);
+    createCardEl(false, 'p-card', userCards, playerHand);
+    createCardEl(false, 'p-card', userCards, playerHand);
+    createCardEl(false, 'p-card', userCards, playerHand);
+    createCardEl(false, 'p-card', userCards, playerHand);
+    createCardEl(false, 'p-card', userCards, playerHand);
+    createCardEl(false, 'p-card', userCards, playerHand);
+
+    createCardEl(false, 'd-card', dealCards, dealerPile);
+    createCardEl(true, 'd-card', dealCards, throwAway);
     
-
+    console.log(playerHand)
+    console.log(dealerPile)
+    console.log(throwAway)
 
 }
+function resetGame() {
+    window.location.reload()
+}
+
+
+function randomCard() {
+   let random = Math.floor(Math.random() * (deck.length -1));
+    return deck[random]
+};
+
+function createCardEl(faceUp, className, container, cardArry) {
+
+    var ourCard = randomCard()
+    ourCard.isFaceUp = faceUp
+    cardArry.push(ourCard)
+    let cardDiv = document.createElement('div');
+    cardDiv.className = className
+    cardDiv.innerHTML = `<img src="${cardImgSrc(ourCard)}">`;
+    container.appendChild(cardDiv)
+    
+    
+    
+};
+
+function cardImgSrc(card) {
+
+    if (card.isFaceUp === true) {
+        return `css/card-deck/images/${card.suit}/${card.suit}-${card.rank}.svg`;
+    } else {
+        return "css/card-deck/images/backs/blue.svg";    
+
+    } 
+}
+// function totalPoints(playerHand) {
+//     var sum = 0;
+//     for(var i = 0; i < playerHand.length; i++){
+//         sum = sum + playerHand[i];
+//     }
+//     return sum;
+// }
+// console.log(totalPoints(playerHand))
+
+
+
+
 
 
                 

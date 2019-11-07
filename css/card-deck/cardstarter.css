@@ -44,22 +44,22 @@
 .card.diamonds.A,
 .card.dA,
 .card.♦A {
-  background-image: url("../card-deck/images/diamonds/diamonds-1.svg"); }
+  background-image: url("../card-deck/images/diamonds/diamonds-A.svg"); }
 
 .card.diamonds.K,
 .card.dK,
 .card.♦K {
-  background-image: url("../card-deck/images/diamonds/diamonds-0.svg"); }
+  background-image: url("../card-deck/images/diamonds/diamonds-K.svg"); }
 
 .card.diamonds.Q,
 .card.dQ,
 .card.♦Q {
-  background-image: url("../card-deck/images/diamonds/diamonds-12.svg"); }
+  background-image: url("../card-deck/images/diamonds/diamonds-Q.svg"); }
 
 .card.diamonds.J,
 .card.dJ,
 .card.♦J {
-  background-image: url("../card-deck/images/diamonds/diamonds-11.svg"); }
+  background-image: url("../card-deck/images/diamonds/diamonds-J.svg"); }
 
 .card.diamonds.r10,
 .card.d10,
@@ -109,22 +109,22 @@
 .card.hearts.A,
 .card.hA,
 .card.♥A {
-  background-image: url("../card-deck/images/hearts/hearts-1.svg"); }
+  background-image: url("../card-deck/images/hearts/hearts-A.svg"); }
 
 .card.hearts.K,
 .card.hK,
 .card.♥K {
-  background-image: url("../card-deck/images/hearts/hearts-0.svg"); }
+  background-image: url("../card-deck/images/hearts/hearts-K.svg"); }
 
 .card.hearts.Q,
 .card.hQ,
 .card.♥Q {
-  background-image: url("../card-deck/images/hearts/hearts-12.svg"); }
+  background-image: url("../card-deck/images/hearts/hearts-Q.svg"); }
 
 .card.hearts.J,
 .card.hJ,
 .card.♥J {
-  background-image: url("../card-deck/images/hearts/hearts-11.svg"); }
+  background-image: url("../card-deck/images/hearts/hearts-J.svg"); }
 
 .card.hearts.r10,
 .card.h10,
@@ -174,22 +174,22 @@
 .card.spades.A,
 .card.sA,
 .card.♠A {
-  background-image: url("../card-deck/images/spades/spades-1.svg"); }
+  background-image: url("../card-deck/images/spades/spades-A.svg"); }
 
 .card.spades.K,
 .card.sK,
 .card.♠K {
-  background-image: url("../card-deck/images/spades/spades-0.svg"); }
+  background-image: url("../card-deck/images/spades/spades-K.svg"); }
 
 .card.spades.Q,
 .card.sQ,
 .card.♠Q {
-  background-image: url("../card-deck/images/spades/spades-12.svg"); }
+  background-image: url("../card-deck/images/spades/spades-Q.svg"); }
 
 .card.spades.J,
 .card.sJ,
 .card.♠J {
-  background-image: url("../card-deck/images/spades/spades-11.svg"); }
+  background-image: url("../card-deck/images/spades/spades-J.svg"); }
 
 .card.spades.r10,
 .card.s10,
@@ -239,22 +239,22 @@
 .card.clubs.A,
 .card.cA,
 .card.♣A {
-  background-image: url("../card-deck/images/clubs/clubs-1.svg"); }
+  background-image: url("../card-deck/images/clubs/clubs-A.svg"); }
 
 .card.clubs.K,
 .card.cK,
 .card.♣K {
-  background-image: url("../card-deck/images/clubs/clubs-0.svg"); }
+  background-image: url("../card-deck/images/clubs/clubs-K.svg"); }
 
 .card.clubs.Q,
 .card.cQ,
 .card.♣Q {
-  background-image: url("../card-deck/images/clubs/clubs-12.svg"); }
+  background-image: url("../card-deck/images/clubs/clubs-Q.svg"); }
 
 .card.clubs.J,
 .card.cJ,
 .card.♣J {
-  background-image: url("../card-deck/images/clubs/clubs-11.svg"); }
+  background-image: url("../card-deck/images/clubs/clubs-J.svg"); }
 
 .card.clubs.r10,
 .card.c10,
