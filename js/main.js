@@ -5,15 +5,11 @@ var SUITS = ['spades', 'clubs', 'diamonds', 'hearts'];
 var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
 
-
-
-
-
 /*----- app's state (variables) -----*/
 let deck = [];
-var playerHand = [];
+let playerHand = [];
 let throwAway = [];
-let dealerPile = [];
+let dealPile = [];
 let gameOver = false
 let shuffledDeck = [];
 /*------- classes for cards -----*/
@@ -38,35 +34,40 @@ class Card {
 }
 
 
-
-
-
-
 /*----- cached element references -----*/
 const messageEl = document.querySelector('h2');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
 const userCards = document.querySelector('.player-container');
-const dealerCards = document.querySelector('.dealer-container');
 const deckBtn = document.getElementById('deckBtn');
+const cardPic = document.getElementById('cardPic');
+const cardTA = document.getElementById('cardTA');
+const p1 = document.getElementById('cardP1');
+const p2 = document.getElementById('cardP2');
+const p3 = document.getElementById('cardP3');
+const p4 = document.getElementById('cardP4');
+const p5 = document.getElementById('cardP5');
+const p6 = document.getElementById('cardP6');
 
-const p1 = document.getElementById('p1')
-const p2 = document.getElementById('p2')
-const p3 = document.getElementById('p3')
-const p4 = document.getElementById('p4')
-const p5 = document.getElementById('p5')
-const p6 = document.getElementById('p6')
+/*----- DOM Manipulation -----*/
+cardPic.style.height = '200px';
+cardPic.style.width = '150px';
+
+
+
+
+
+
 /*----- event listeners -----*/
 replayBtn.addEventListener('click', resetGame);
-// userCards.addEventListener('click', tradeCard);
-deckBtn.addEventListener('click', dealCard);
+cardPic.addEventListener('click', dealCard);
 p1.addEventListener('click', reactToP1)
-function reactToP1(){
-    console.log('hello')
-    playerHand[0] = throwAway[throwAway.length - 1]
-    p1.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
-    // document.getElementById('display-card').style.display = 'none'
-}
+// p2.addEventListener('click', reactToP2)
+// p3.addEventListener('click', reactToP3)
+// p4.addEventListener('click', reactToP4)
+// p5.addEventListener('click', reactToP5)
+// p6.addEventListener('click', reactToP6)
+
 
 
 
@@ -75,127 +76,83 @@ function reactToP1(){
 
 /*----- functions -----*/
 function init() {
-    for (suit of SUITS) {
-        for (rank of RANKS){
+    for (suit of SUITS) 
+        for (rank of RANKS)
             deck.push(new Card(suit, rank));
-        }
-    }
-            
+    
+
+    
     gameOver = false;
-        
+    
     renderShuffledDeck(); 
-
-    playerHand = shuffledDeck.splice(0, 6);
     
-    // createCardEl(true, 'p1', 'p-card', userCards, playerHand);
-    // createCardEl(true, 'p2', 'p-card', userCards, playerHand);
-    // createCardEl(true, 'p3', 'p-card', userCards, playerHand);
-    // createCardEl(true, 'p4', 'p-card', userCards, playerHand);
-    // createCardEl(true, 'p5', 'p-card', userCards, playerHand);
-    // createCardEl(true, 'p6', 'p-card', userCards, playerHand);
-
-    // createCardEl(true, 'dealer', 'd-card', dealerCards, dealerPile);
-    
-
+    playerHand = shuffledDeck.splice(0, 6);   
 } 
-
-
-function dealCard(evt){
-    console.log('hi')
-    if (evt.target.id === 'deckBtn') {
-        throwAway.push(shuffledDeck.splice(0, 1));
-        throwAway = throwAway.flat();
-        
-    } 
-}
-
 
 function renderShuffledDeck(){
     var tempDeck = deck.slice()
-    
     while (tempDeck.length) {
         var rndIdx = Math.floor(Math.random() * tempDeck.length);
         shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+    }  
+}
+
+function dealCard(evt){
+    console.log(evt.target.id);
+    if (evt.target.id === 'cardPic'){
+        dealPile.push(shuffledDeck.splice(0, 1));
+        dealPile = dealPile.flat();
+        cardD.style.backgroundImage = `url(./css/card-deck/images/${dealPile[dealPile.length - 1].suit}/${dealPile[dealPile.length - 1].suit}-${dealPile[dealPile.length - 1].rank}.svg)`
     }
-    
 }
 
-// function createCardEl(faceUp, idName, className, container, cardArry) {
-//         card = cardArry[i]
-//         card.isFaceUp = faceUp
-//         let cardDiv = document.createElement('div');
-//         cardDiv.className = className
-//         cardDiv.id = idName
-//         cardDiv.innerHTML = `<img src="${cardImgSrc(card)}">`;
-//         container.appendChild(cardDiv)
-// }
+function reactToP1(){
 
-function cardImgSrc(card) {
-
-    if (card.isFaceUp === true) {
-        return `css/card-deck/images/${card.suit}/${card.suit}-${card.rank}.svg`;
-    } else {
-        return "css/card-deck/images/backs/blue.svg";    
-
-    } 
-}
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
+        playerHand[0] = dealPile[dealPile.length - 1]
+        console.log(playerHand[0].suit)
+        cardD.style.backgroundImage = ``
+    }
 
 
  
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // function totalPoints(playerHand) {
+        //     var sum = 0;
+        //     for(var i = 0; i < playerHand.length; i++){
+            //         sum = sum + playerHand[i];
+            //     }
+            //     return sum;
+            // }
+            // console.log(totalPoints(playerHand))
+            
+            
+            
+            
+            
+            
 function resetGame() {
     window.location.reload()
 }
-
-
-
-
-
-// function tradeCard(evt) {
-//     // let topDiscard = throwAway[throwAway.length-1]
-//     // console.log(evt.target.parentElement.id)
-//     switch(evt.target.parentElement.id) {
-//         case 'p1': {
-//             // console.log(playerHand)
-//             // console.log(throwAway)
-//             let throwCard = throwAway.pop();
-//             let clickedCard = playerHand[0]
-//             throwAway.push(clickedCard)
-//             playerHand.splice(0, 0, throwCard)
-//             // console.log(playerHand)
-//             // console.log(throwAway)
-
-//         }
-//     }
-
-// }
-
-
-
-
-
-
-
-// function totalPoints(playerHand) {
-//     var sum = 0;
-//     for(var i = 0; i < playerHand.length; i++){
-//         sum = sum + playerHand[i];
-//     }
-//     return sum;
-// }
-// console.log(totalPoints(playerHand))
-
-
-
-
-
-
-                
+            
 init();
-              
-                
-                
-                
+            
+            
+            
+            
 //Allow player to click cards 1-3 only once to see content
 //Click deck to turn over a card
 //Replace the card on top of the discard pile with whatever card is clicked from the hand

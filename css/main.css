@@ -19,7 +19,7 @@ h2 {
 
 }
   
-button {
+#replay, #hint {
     font-family: Arial, Helvetica, sans-serif;  
     display: block;
     padding: 10px;
@@ -31,7 +31,17 @@ button {
     outline: none;
 }
 
-button:hover {
+#deckBtn {
+  display: flex;
+  width: 150px;
+  height: 200px;
+  flex-direction: row;
+  justify-content: center;
+  border: none;
+  background-size: cover;
+}
+
+#replay:hover, #hint:hover {
     background-color: grey;
     color: white;
 }
@@ -40,20 +50,29 @@ button:hover {
      display: flex;
      flex-direction: row;
      justify-content: space-evenly;
+     border: none;
 }
 
 
-#pla{
-  display: inline;
-  height: 40px;
-  position: absolute;
-  left: 10%;
+.player-container {
+  display: flex;
+  flex-wrap: wrap;
+ justify-content: space-between;
 }
 
 img {
   background-size: cover;
-  height: 90px;
-  width: 70px;
+  height: 200px;
+  width: 150px;
   margin: auto;
 }
 
+.p-card {
+  margin: 0 6px 0 6px;
+}
+
+#cardTA {
+  background-image: inherit;
+  height: 200px;
+  width: 150px;
+}
