@@ -7,6 +7,7 @@ var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K'
 
 /*----- app's state (variables) -----*/
 let deck = [];
+let sum = 0
 let playerHand = [];
 let throwAway = [];
 let dealPile = [];
@@ -29,14 +30,13 @@ class Card {
                 return 0;
             default:
                 return Number(this.rank);
+            }
         }
     }
-}
-
+    
 
 /*----- cached element references -----*/
 const messageEl = document.querySelector('h2');
-const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
 const userCards = document.querySelector('.player-container');
 const deckBtn = document.getElementById('deckBtn');
@@ -67,7 +67,7 @@ p3.addEventListener('click', reactToP3)
 p4.addEventListener('click', reactToP4)
 p5.addEventListener('click', reactToP5)
 p6.addEventListener('click', reactToP6)
-
+cardPic.addEventListener('click', GameOver);
 
 
 
@@ -147,30 +147,27 @@ function reactToP6(){
 
  /*--------- Win Logic --------*/
 function totalPoints(playerHand) {
-    var sum = 0;
+    console.log('hello')
     for(var i = 0; i < playerHand.length; i++){
-        var parsed = parseInt(playerHand[i].rank)
-            sum = sum + parsed;
-           
-        }
-        return sum;
+        sum = sum + playerHand[i].value();
     }
-    
+    return sum;
+}
 
 
 function GameOver() {
     if(shuffledDeck.length === 0){
         gameOver = true
+        totalPoints(playerHand);
+        
+        if (totalPoints < 18) {
+            messageEl.innerHTML = `WOW, You scored ${sum}. You're a pro!`
+        } else if (totalPoints > 18 || totalPoints < 25){
+            messageEl.innerHTML = `You scored ${sum}. That'll Do`
+        } else {
+            messageEl.innerHTML = `You scored ${sum}. Better Luck Next Time`
+        }
         return;
-           
-    } else false;
-
-    if (totalPoints < 18) {
-        messageEl.innerHTML = "WOW, You're a pro!"
-    } else if (18 < totalPoints < 25){
-        messageEl.innerHTML = "That'll Do"
-    } else {
-        messageEl.innerHTML = 'Better Luck Next Time'
     }
 }
     
