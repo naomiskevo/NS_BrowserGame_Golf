@@ -62,11 +62,11 @@ cardPic.style.width = '150px';
 replayBtn.addEventListener('click', resetGame);
 cardPic.addEventListener('click', dealCard);
 p1.addEventListener('click', reactToP1)
-// p2.addEventListener('click', reactToP2)
-// p3.addEventListener('click', reactToP3)
-// p4.addEventListener('click', reactToP4)
-// p5.addEventListener('click', reactToP5)
-// p6.addEventListener('click', reactToP6)
+p2.addEventListener('click', reactToP2)
+p3.addEventListener('click', reactToP3)
+p4.addEventListener('click', reactToP4)
+p5.addEventListener('click', reactToP5)
+p6.addEventListener('click', reactToP6)
 
 
 
@@ -98,7 +98,6 @@ function renderShuffledDeck(){
 }
 
 function dealCard(evt){
-    console.log(evt.target.id);
     if (evt.target.id === 'cardPic'){
         dealPile.push(shuffledDeck.splice(0, 1));
         dealPile = dealPile.flat();
@@ -106,11 +105,40 @@ function dealCard(evt){
     }
 }
 
-function reactToP1(){
+function reactToP1(evt){
+    console.log(evt.target)
+    cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
+    playerHand[0] = dealPile[dealPile.length - 1]
+    cardD.style.backgroundImage = ``
+    }
+function reactToP2(){
 
-        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
-        playerHand[0] = dealPile[dealPile.length - 1]
-        console.log(playerHand[0].suit)
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[1].suit}/${playerHand[1].suit}-${playerHand[1].rank}.svg)`
+        playerHand[1] = dealPile[dealPile.length - 1]
+        cardD.style.backgroundImage = ``
+    }
+function reactToP3(){
+
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[2].suit}/${playerHand[2].suit}-${playerHand[2].rank}.svg)`
+        playerHand[2] = dealPile[dealPile.length - 1]
+        cardD.style.backgroundImage = ``
+    }
+function reactToP4(){
+
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[3].suit}/${playerHand[3].suit}-${playerHand[3].rank}.svg)`
+        playerHand[3] = dealPile[dealPile.length - 1]
+        cardD.style.backgroundImage = ``
+    }
+function reactToP5(){
+
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[4].suit}/${playerHand[4].suit}-${playerHand[4].rank}.svg)`
+        playerHand[4] = dealPile[dealPile.length - 1]
+        cardD.style.backgroundImage = ``
+    }
+function reactToP6(){
+
+        cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[5].suit}/${playerHand[5].suit}-${playerHand[5].rank}.svg)`
+        playerHand[5] = dealPile[dealPile.length - 1]
         cardD.style.backgroundImage = ``
     }
 
