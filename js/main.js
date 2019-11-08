@@ -1,5 +1,4 @@
 /*----- constants -----*/
-//assign value to all the different cards
 
 var SUITS = ['spades', 'clubs', 'diamonds', 'hearts'];
 var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
@@ -48,7 +47,8 @@ const p3 = document.getElementById('cardP3');
 const p4 = document.getElementById('cardP4');
 const p5 = document.getElementById('cardP5');
 const p6 = document.getElementById('cardP6');
-
+const hintBtn = document.getElementById('hintBtn')
+const hintInstMessage = document.getElementById('hint-inst')
 /*----- DOM Manipulation -----*/
 cardPic.style.height = '200px';
 cardPic.style.width = '150px';
@@ -60,6 +60,7 @@ cardPic.style.width = '150px';
 
 /*----- event listeners -----*/
 replayBtn.addEventListener('click', resetGame);
+hintBtn.addEventListener('click', hintMessage);
 cardPic.addEventListener('click', dealCard);
 p1.addEventListener('click', reactToP1)
 p2.addEventListener('click', reactToP2)
@@ -142,43 +143,49 @@ function reactToP6(){
         cardD.style.backgroundImage = ``
     }
 
-
     
-
- /*--------- Win Logic --------*/
-function totalPoints(playerHand) {
-    console.log('hello')
-    for(var i = 0; i < playerHand.length; i++){
-        sum = sum + playerHand[i].value();
-    }
-    return sum;
-}
-
-
-function GameOver() {
-    if(shuffledDeck.length === 0){
-        gameOver = true
-        totalPoints(playerHand);
-        
-        if (totalPoints < 18) {
-            messageEl.innerHTML = `WOW, You scored ${sum}. You're a pro!`
-        } else if (totalPoints > 18 || totalPoints < 25){
-            messageEl.innerHTML = `You scored ${sum}. That'll Do`
-        } else {
-            messageEl.innerHTML = `You scored ${sum}. Better Luck Next Time`
+    /*--------- Win Logic --------*/
+    function totalPoints(playerHand) {
+        console.log('hello')
+        for(var i = 0; i < playerHand.length; i++){
+            sum = sum + playerHand[i].value();
         }
-        return;
+        return sum;
     }
-}
     
     
-    
-    
-    
-    
-    
-    
+    function GameOver() {
+        if(shuffledDeck.length === 0){
+            gameOver = true
+            totalPoints(playerHand);
             
+            if (totalPoints < 18) {
+                messageEl.innerHTML = `WOW, You scored ${sum}. You're a pro!`
+            } else if (totalPoints > 18 || totalPoints < 25){
+                messageEl.innerHTML = `You scored ${sum}. That'll Do`
+            } else {
+                messageEl.innerHTML = `You scored ${sum}. Better Luck Next Time`
+            }
+            return;
+        }
+    }
+    
+    function hintMessage(evt) {
+        totalPoints(playerHand);
+        if (evt.target.id === 'hintBtn') {
+            hintInstMessage.textContent = `You have ${sum} points`;
+
+        } else return
+    }
+  
+    
+    
+    
+    
+    
+    
+    
+    
             
             
             
@@ -192,16 +199,7 @@ init();
             
             
             
-            
-//Allow player to click cards 1-3 only once to see content
-//Click deck to turn over a card
-//Replace the card on top of the discard pile with whatever card is clicked from the hand
-//add all card values together when deck is finished
-//add each round score to Total Score
-//render message "Better Luck Next Time" if Total Score is > 40
-//render message "That'll Do" if Total Score is 40 - 25
-//render message "WOW, You're a pro" if Total Score is < 25
-
+        
 
 
 

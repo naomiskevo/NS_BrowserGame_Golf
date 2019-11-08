@@ -19,10 +19,11 @@ h2 {
 
 }
   
-#replay {
+#replay, #hintBtn {
     font-family: Arial, Helvetica, sans-serif;  
     display: block;
-    padding: 10px;
+    height: 48px;
+    width: 68px;
     margin: 4%;
     font-size: 16px;
     color: grey;
@@ -33,15 +34,13 @@ h2 {
 
 #deckBtn {
   display: flex;
-  /* width: 150px;
-  height: 200px; */
   flex-direction: row;
   justify-content: center;
   border: none;
   background-size: cover;
 }
 
-#replay:hover, #hint:hover {
+#replay:hover, #hintBtn:hover {
     background-color: grey;
     color: white;
 }
@@ -58,14 +57,13 @@ h2 {
 .player-container {
   display: flex;
   flex-wrap: wrap;
- justify-content: space-between;
+ justify-content: space-around;
 }
 
 img {
   background-size: cover;
   height: 200px;
   width: 150px;
-  margin: auto;
 }
 
 #cardD, #cardTA {
