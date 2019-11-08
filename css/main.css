@@ -4,6 +4,7 @@ html, * {
   
 html, body {
     height: 100%;
+    background-color: lightblue;
 }
 
 #title {
@@ -30,6 +31,7 @@ h2 {
     border: 1px solid grey;
     border-radius: 4px;
     outline: none;
+    background-color: lightgray;
 }
 
 #deckBtn {
@@ -38,6 +40,7 @@ h2 {
   justify-content: center;
   border: none;
   background-size: cover;
+  background-color: lightblue;
 }
 
 #replay:hover, #hintBtn:hover {
