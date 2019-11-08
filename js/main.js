@@ -104,7 +104,7 @@ function dealCard(evt){
         cardD.style.backgroundImage = `url(./css/card-deck/images/${dealPile[dealPile.length - 1].suit}/${dealPile[dealPile.length - 1].suit}-${dealPile[dealPile.length - 1].rank}.svg)`
     }
 }
-
+/*----------- Card functionality ----------*/
 function reactToP1(evt){
     console.log(evt.target)
     cardTA.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
@@ -143,8 +143,36 @@ function reactToP6(){
     }
 
 
- 
+    
 
+ /*--------- Win Logic --------*/
+function totalPoints(playerHand) {
+    var sum = 0;
+    for(var i = 0; i < playerHand.length; i++){
+        var parsed = parseInt(playerHand[i].rank)
+            sum = sum + parsed;
+           
+        }
+        return sum;
+    }
+    
+
+
+function GameOver() {
+    if(shuffledDeck.length === 0){
+        gameOver = true
+        return;
+           
+    } else false;
+
+    if (totalPoints < 18) {
+        messageEl.innerHTML = "WOW, You're a pro!"
+    } else if (18 < totalPoints < 25){
+        messageEl.innerHTML = "That'll Do"
+    } else {
+        messageEl.innerHTML = 'Better Luck Next Time'
+    }
+}
     
     
     
@@ -153,19 +181,6 @@ function reactToP6(){
     
     
     
-    
-    
-    
-    
-    
-    // function totalPoints(playerHand) {
-        //     var sum = 0;
-        //     for(var i = 0; i < playerHand.length; i++){
-            //         sum = sum + playerHand[i];
-            //     }
-            //     return sum;
-            // }
-            // console.log(totalPoints(playerHand))
             
             
             
