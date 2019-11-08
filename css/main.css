@@ -12,6 +12,8 @@ html, body {
 
 }
 
+
+
 h2 {
   text-align: center;
 
@@ -38,22 +40,20 @@ button:hover {
      display: flex;
      flex-direction: row;
      justify-content: space-evenly;
-     justify-items: ;
 }
 
-.player-container {
-     display: flex;
-     
-     justify-content: space-between;
+
+#pla{
+  display: inline;
+  height: 40px;
+  position: absolute;
+  left: 10%;
 }
 
-.p-card {
-  border: 2px solid darkgray;
-  margin : 0 6px 0 6px;
-
+img {
+  background-size: cover;
+  height: 90px;
+  width: 70px;
+  margin: auto;
 }
 
-.d-card {
-  border: 2px solid darkgray;
-  margin-bottom: 3%;
-}

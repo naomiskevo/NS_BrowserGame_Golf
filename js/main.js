@@ -11,17 +11,16 @@ var RANKS = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K'
 
 /*----- app's state (variables) -----*/
 let deck = [];
-let playerHand = [];
+var playerHand = [];
 let throwAway = [];
-
+let dealerPile = [];
 let gameOver = false
-
+let shuffledDeck = [];
 /*------- classes for cards -----*/
 class Card {
-    constructor(suit, rank, isFaceUp = true) {
+    constructor(suit, rank) {
         this.suit = suit;
         this.rank = rank;
-        this.isFaceUp = isFaceUp;
     }
     value() {
         switch (this.rank) {
@@ -48,15 +47,26 @@ const messageEl = document.querySelector('h2');
 const hintBtn = document.getElementById('hint');
 const replayBtn = document.getElementById('replay');
 const userCards = document.querySelector('.player-container');
-const dealCards = document.querySelector('.dealer-container');
+const dealerCards = document.querySelector('.dealer-container');
+const deckBtn = document.getElementById('deckBtn');
 
-
+const p1 = document.getElementById('p1')
+const p2 = document.getElementById('p2')
+const p3 = document.getElementById('p3')
+const p4 = document.getElementById('p4')
+const p5 = document.getElementById('p5')
+const p6 = document.getElementById('p6')
 /*----- event listeners -----*/
 replayBtn.addEventListener('click', resetGame);
-// dealerCard.addEventListener('click', dealCard);
-
-
-
+// userCards.addEventListener('click', tradeCard);
+deckBtn.addEventListener('click', dealCard);
+p1.addEventListener('click', reactToP1)
+function reactToP1(){
+    console.log('hello')
+    playerHand[0] = throwAway[throwAway.length - 1]
+    p1.style.backgroundImage = `url(./css/card-deck/images/${playerHand[0].suit}/${playerHand[0].suit}-${playerHand[0].rank}.svg)`
+    // document.getElementById('display-card').style.display = 'none'
+}
 
 
 
@@ -65,62 +75,60 @@ replayBtn.addEventListener('click', resetGame);
 
 /*----- functions -----*/
 function init() {
-    for (suit of SUITS)
-        for (rank of RANKS)
+    for (suit of SUITS) {
+        for (rank of RANKS){
             deck.push(new Card(suit, rank));
-
-
+        }
+    }
+            
     gameOver = false;
+        
+    renderShuffledDeck(); 
 
-    userCards.innerHTML = '';
+    playerHand = shuffledDeck.splice(0, 6);
+    
+    // createCardEl(true, 'p1', 'p-card', userCards, playerHand);
+    // createCardEl(true, 'p2', 'p-card', userCards, playerHand);
+    // createCardEl(true, 'p3', 'p-card', userCards, playerHand);
+    // createCardEl(true, 'p4', 'p-card', userCards, playerHand);
+    // createCardEl(true, 'p5', 'p-card', userCards, playerHand);
+    // createCardEl(true, 'p6', 'p-card', userCards, playerHand);
+
+    // createCardEl(true, 'dealer', 'd-card', dealerCards, dealerPile);
     
 
-    playerHand = [];
-    throwAway = [];
-    dealerPile = [];
-
- 
+} 
 
 
-
-    createCardEl(false, 'p-card', userCards, playerHand);
-    createCardEl(false, 'p-card', userCards, playerHand);
-    createCardEl(false, 'p-card', userCards, playerHand);
-    createCardEl(false, 'p-card', userCards, playerHand);
-    createCardEl(false, 'p-card', userCards, playerHand);
-    createCardEl(false, 'p-card', userCards, playerHand);
-
-    createCardEl(false, 'd-card', dealCards, dealerPile);
-    createCardEl(true, 'd-card', dealCards, throwAway);
-    
-    console.log(playerHand)
-    console.log(dealerPile)
-    console.log(throwAway)
-
-}
-function resetGame() {
-    window.location.reload()
+function dealCard(evt){
+    console.log('hi')
+    if (evt.target.id === 'deckBtn') {
+        throwAway.push(shuffledDeck.splice(0, 1));
+        throwAway = throwAway.flat();
+        
+    } 
 }
 
 
-function randomCard() {
-   let random = Math.floor(Math.random() * (deck.length -1));
-    return deck[random]
-};
+function renderShuffledDeck(){
+    var tempDeck = deck.slice()
+    
+    while (tempDeck.length) {
+        var rndIdx = Math.floor(Math.random() * tempDeck.length);
+        shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+    }
+    
+}
 
-function createCardEl(faceUp, className, container, cardArry) {
-
-    var ourCard = randomCard()
-    ourCard.isFaceUp = faceUp
-    cardArry.push(ourCard)
-    let cardDiv = document.createElement('div');
-    cardDiv.className = className
-    cardDiv.innerHTML = `<img src="${cardImgSrc(ourCard)}">`;
-    container.appendChild(cardDiv)
-    
-    
-    
-};
+// function createCardEl(faceUp, idName, className, container, cardArry) {
+//         card = cardArry[i]
+//         card.isFaceUp = faceUp
+//         let cardDiv = document.createElement('div');
+//         cardDiv.className = className
+//         cardDiv.id = idName
+//         cardDiv.innerHTML = `<img src="${cardImgSrc(card)}">`;
+//         container.appendChild(cardDiv)
+// }
 
 function cardImgSrc(card) {
 
@@ -131,6 +139,43 @@ function cardImgSrc(card) {
 
     } 
 }
+
+
+ 
+
+function resetGame() {
+    window.location.reload()
+}
+
+
+
+
+
+// function tradeCard(evt) {
+//     // let topDiscard = throwAway[throwAway.length-1]
+//     // console.log(evt.target.parentElement.id)
+//     switch(evt.target.parentElement.id) {
+//         case 'p1': {
+//             // console.log(playerHand)
+//             // console.log(throwAway)
+//             let throwCard = throwAway.pop();
+//             let clickedCard = playerHand[0]
+//             throwAway.push(clickedCard)
+//             playerHand.splice(0, 0, throwCard)
+//             // console.log(playerHand)
+//             // console.log(throwAway)
+
+//         }
+//     }
+
+// }
+
+
+
+
+
+
+
 // function totalPoints(playerHand) {
 //     var sum = 0;
 //     for(var i = 0; i < playerHand.length; i++){
@@ -147,7 +192,7 @@ function cardImgSrc(card) {
 
                 
 init();
-                
+              
                 
                 
                 
